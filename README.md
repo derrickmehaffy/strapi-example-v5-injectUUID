@@ -2,6 +2,8 @@
 
 This example application shows how you could inject a custom UUID field on certain content-types and automatically generate a random UUID during the create process for both the content and admin APIs.
 
+This example is a refactored version of the same example from Strapi 4 which you can find [here](https://github.com/strapi-support-demo-apps/strapi-example-v4-injectUUID).
+
 ## Injecting the UUID field
 
 For this part we need to do it in the [register](https://docs.strapi.io/dev-docs/configurations/functions#register) phase to ensure it's actually created in the database as well. You can see this on lines 15-21 of the [index.js](./src/index.js) file.
