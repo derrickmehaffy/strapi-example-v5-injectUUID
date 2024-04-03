@@ -20,14 +20,8 @@ module.exports = {
     }
   },
 
-  /**
-   * An asynchronous bootstrap function that runs before
-   * your application gets started.
-   *
-   * This gives you an opportunity to set up your data model,
-   * run jobs, or perform some special logic.
-   */
   async bootstrap({ strapi }) {
+    // Search through the content-type views and change the uuid attribute to be readonly
     for (let i = 0; i < contentTypes.length; i++) {
       const view = await strapi.db.query("strapi::core-store").findOne({
         where: {
@@ -38,6 +32,7 @@ module.exports = {
       let value = JSON.parse(view.value);
       console.log(value?.metadatas);
 
+      // Set editable to false within the content manager view (could also just remove it from the view)
       if (value?.metadatas[uuidFieldName]) {
         value.metadatas[uuidFieldName].edit = {
           label: "UUID",
@@ -48,6 +43,7 @@ module.exports = {
         };
       }
 
+      // Update the view configuration
       await strapi.db.query("strapi::core-store").update({
         where: { id: view.id },
         data: {
@@ -55,6 +51,7 @@ module.exports = {
         },
       });
 
+      // Inject documentService Middleware filtering by the specific content-types and action
       strapi.documents.use(async (ctx, next) => {
         if (
           contentTypes.includes(ctx?.contentType?.uid) &&
