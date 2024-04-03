@@ -1,0 +1,33 @@
+{
+  "name": "test-lifecycles-v-5",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A Strapi application",
+  "license": "MIT",
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "scripts": {
+    "build": "strapi build",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "strapi": "strapi"
+  },
+  "dependencies": {
+    "@strapi/plugin-users-permissions": "5.0.0-beta.2",
+    "@strapi/strapi": "5.0.0-beta.2",
+    "better-sqlite3": "9.4.3",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0",
+    "styled-components": "5.3.3"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "0c0bb43c-76ef-40e0-a052-62c07b3d2d1e"
+  }
+}
